@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mickey Poandl</title>
-<meta name="description" content="Mickey Poandl (he/they): communications and storytelling for mission-driven organizations. Case studies, writing samples and press.">
+<meta name="description" content="Mickey Poandl (he/they): communications and storytelling for mission-driven organizations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,700;1,500&display=swap">
 <style>
-  /* Layout: burgundy header band like the resume, then a single reading column with case studies as full-width bands */
+  /* Layout: burgundy header band like the resume, then image-led card grids with very short copy */
   :root {
     --burgundy: #6B1020;
     --espresso: #2B1B17;
@@ -25,9 +25,11 @@
     --accent-soft: #B76E79;
     --rule: #E8D3B3;
     --band-bg: #6B1020;
-    --band-fg: #FFFFFF;
     --band-muted: #E8D3B3;
     --chip-bg: #F3E7D6;
+    --tile-a: #6B1020;
+    --tile-b: #2B1B17;
+    --tile-fg: #FBF7F0;
 
     --display: "Lora", Georgia, "Times New Roman", serif;
     --body: "Inter", "Helvetica Neue", Arial, sans-serif;
@@ -36,166 +38,152 @@
     :root:not([data-theme="light"]) {
       --bg: #1F1411; --surface: #2B1B17; --fg: #F4EBDD; --muted: #C9B6A4;
       --accent: #E3A0AA; --accent-soft: #B76E79; --rule: #4A3530;
-      --band-bg: #4E0B17; --band-fg: #FFFFFF; --band-muted: #E8D3B3; --chip-bg: #3A2722;
+      --band-bg: #4E0B17; --band-muted: #E8D3B3; --chip-bg: #3A2722;
+      --tile-a: #4E0B17; --tile-b: #3A2722; --tile-fg: #FBF7F0;
       color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #1F1411; --surface: #2B1B17; --fg: #F4EBDD; --muted: #C9B6A4;
     --accent: #E3A0AA; --accent-soft: #B76E79; --rule: #4A3530;
-    --band-bg: #4E0B17; --band-fg: #FFFFFF; --band-muted: #E8D3B3; --chip-bg: #3A2722;
+    --band-bg: #4E0B17; --band-muted: #E8D3B3; --chip-bg: #3A2722;
+    --tile-a: #4E0B17; --tile-b: #3A2722; --tile-fg: #FBF7F0;
     color-scheme: dark;
   }
 
   * { box-sizing: border-box; }
-  body {
-    background: var(--bg); color: var(--fg);
-    font-family: var(--body); font-size: 17px; line-height: 1.6;
-    margin: 0;
-  }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.55; margin: 0; }
   a { color: var(--accent); text-underline-offset: 3px; text-decoration-thickness: 1px; }
   a:hover { text-decoration-thickness: 2px; }
   a:focus-visible { outline: 2px solid var(--accent-soft); outline-offset: 3px; border-radius: 2px; }
   h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.2; margin: 0; }
   p { margin: 0; }
+  img { max-width: 100%; }
 
   .wrap {
-    max-width: 1040px; margin: 0 auto;
+    max-width: 1120px; margin: 0 auto;
     padding-left: max(20px, env(safe-area-inset-left, 0px));
     padding-right: max(20px, env(safe-area-inset-right, 0px));
   }
 
   /* ---------- Header band ---------- */
   .hero {
-    background: var(--band-bg); color: var(--band-fg);
+    background: var(--band-bg); color: #fff;
     margin-top: calc(-1 * env(safe-area-inset-top, 0px));
     padding-top: env(safe-area-inset-top, 0px);
     border-bottom: 6px solid var(--espresso);
   }
-  .hero .wrap { display: flex; align-items: center; gap: 56px; padding-block: 56px 64px; flex-wrap: wrap; }
-  .portrait { position: relative; width: 210px; height: 210px; flex: none; margin: 0 26px 26px 0; }
+  .hero .wrap { display: flex; align-items: center; gap: 56px; padding-block: 52px 60px; flex-wrap: wrap; }
+  .portrait { position: relative; width: 200px; height: 200px; flex: none; margin: 0 24px 24px 0; }
   .portrait .ring, .portrait .back { position: absolute; border-radius: 4px; }
-  .portrait .ring { inset: 26px -26px -26px 26px; background: var(--rose); }
-  .portrait .back { inset: 13px -13px -13px 13px; background: var(--tan); }
-  .portrait img { position: relative; display: block; width: 210px; height: 210px; object-fit: cover; object-position: 50% 30%; border-radius: 4px; border: 4px solid var(--ivory); }
+  .portrait .ring { inset: 24px -24px -24px 24px; background: var(--rose); }
+  .portrait .back { inset: 12px -12px -12px 12px; background: var(--tan); }
+  .portrait img { position: relative; display: block; width: 200px; height: 200px; object-fit: cover; object-position: 50% 30%; border-radius: 4px; border: 4px solid var(--ivory); }
   .id { flex: 1 1 420px; min-width: 0; }
-  .id h1 { font-size: clamp(2.6rem, 6vw, 3.8rem); color: #fff; letter-spacing: 0.2px; }
+  .id h1 { font-size: clamp(2.6rem, 6vw, 3.8rem); color: #fff; }
   .id .pronouns { font-family: var(--display); color: var(--band-muted); font-size: 1.05rem; margin-top: 6px; }
-  .id .tag { font-family: var(--display); font-style: italic; font-size: clamp(1.15rem, 2.4vw, 1.4rem); color: var(--band-muted); margin-top: 18px; max-width: 34ch; line-height: 1.4; }
-  .id .links { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 26px; font-size: 0.95rem; }
+  .id .tag { font-family: var(--display); font-style: italic; font-size: clamp(1.2rem, 2.6vw, 1.5rem); color: var(--band-muted); margin-top: 16px; }
+  .id .sub { margin-top: 10px; color: #fff; opacity: .9; max-width: 46ch; font-size: 1rem; }
+  .id .links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; margin-top: 24px; font-size: 0.95rem; }
   .id .links a { color: #fff; text-decoration-color: var(--rose); }
-  .id .links .btn {
-    background: var(--ivory); color: var(--burgundy); text-decoration: none; font-weight: 600;
-    padding: 9px 18px; border-radius: 3px;
-  }
+  .id .links .btn { background: var(--ivory); color: var(--burgundy); text-decoration: none; font-weight: 600; padding: 9px 18px; border-radius: 3px; }
   .id .links .btn:hover { background: var(--tan); }
-  .id .where { margin-top: 14px; font-size: 0.9rem; color: var(--band-muted); }
 
-  /* ---------- Intro ---------- */
-  .intro { padding-block: 64px 24px; display: grid; grid-template-columns: 1fr 300px; gap: 56px; align-items: start; }
-  .intro > * { min-width: 0; }
-  .intro .lede { font-family: var(--display); font-size: clamp(1.3rem, 2.6vw, 1.6rem); line-height: 1.45; max-width: 32em; }
-  .intro .lede + p { margin-top: 20px; max-width: 62ch; color: var(--fg); }
-  .facts { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--accent-soft); }
-  .facts li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 2px; }
-  .facts b { font-family: var(--display); font-size: 1.7rem; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
-  .facts span { font-size: 0.88rem; color: var(--muted); line-height: 1.4; }
+  /* ---------- Stat strip ---------- */
+  .stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid var(--rule); }
+  .stats li { padding: 26px 20px 26px 0; display: grid; gap: 2px; }
+  .stats b { font-family: var(--display); font-size: 2.1rem; color: var(--accent); font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stats span { font-size: 0.85rem; color: var(--muted); line-height: 1.35; }
 
-  /* ---------- Section heads ---------- */
+  /* ---------- Sections ---------- */
   .section { padding-block: 56px; }
-  .eyebrow { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-  .section > .wrap > h2 { font-size: clamp(1.7rem, 3.6vw, 2.2rem); color: var(--accent); margin-top: 6px; padding-bottom: 10px; border-bottom: 2px solid var(--accent-soft); }
+  .head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 2px solid var(--accent-soft); padding-bottom: 10px; margin-bottom: 28px; }
+  .head h2 { font-size: clamp(1.7rem, 3.6vw, 2.2rem); color: var(--accent); }
+  .head span { font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .alt { background: var(--surface); border-block: 1px solid var(--rule); }
 
-  /* ---------- Case studies ---------- */
-  .case { display: grid; grid-template-columns: 220px 1fr; gap: 40px; padding-block: 44px; border-bottom: 1px solid var(--rule); }
-  .case:last-child { border-bottom: none; }
-  .case > * { min-width: 0; }
-  .case .meta { display: grid; gap: 10px; align-content: start; }
-  .case .org { font-family: var(--display); font-weight: 700; color: var(--fg); }
-  .case .when { font-size: 0.88rem; color: var(--muted); }
-  .case .role { font-size: 0.88rem; color: var(--muted); }
-  .case h3 { font-size: clamp(1.4rem, 2.8vw, 1.75rem); color: var(--fg); }
-  .case .body { display: grid; gap: 18px; max-width: 68ch; }
-  .case .label { font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 4px; }
-  .case ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; }
-  .case li::marker { color: var(--accent-soft); }
-  .result {
-    background: var(--surface); border-left: 4px solid var(--tan); padding: 16px 20px;
-  }
-  .result p + p { margin-top: 8px; }
-  .clips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .clips a, .clips span {
-    font-size: 0.86rem; background: var(--chip-bg); color: var(--fg); padding: 5px 12px; border-radius: 3px; text-decoration: none;
-  }
+  /* ---------- Media boxes (image, or a designed tile if the image is missing) ---------- */
+  .media { position: relative; aspect-ratio: 16 / 9; max-width: 100%; overflow: hidden; border-radius: 3px; background: var(--tile-a); color: var(--tile-fg); }
+  .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media .fallback { position: absolute; inset: 0; display: grid; align-content: end; gap: 2px; padding: 18px 20px; }
+  .media .fallback b { font-family: var(--display); font-size: clamp(2.4rem, 5vw, 3.2rem); line-height: 1; }
+  .media .fallback span { font-size: 0.9rem; color: var(--tan); }
+  .media.dark { background: var(--tile-b); }
+  .media .play { position: absolute; left: 12px; bottom: 12px; background: rgba(43,27,23,.85); color: #fff; font-size: 0.78rem; font-weight: 600; padding: 4px 10px 4px 8px; border-radius: 3px; }
+
+  /* ---------- Case study cards ---------- */
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 28px; }
+  .card { display: grid; gap: 12px; align-content: start; min-width: 0; }
+  .card .meta { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .card h3 { font-size: 1.3rem; color: var(--fg); }
+  .card p { font-size: 0.96rem; }
+  .card .result { font-size: 0.92rem; border-left: 3px solid var(--accent-soft); padding-left: 12px; color: var(--fg); }
+  .card .result b { color: var(--accent); }
+  .clips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .clips a { font-size: 0.82rem; background: var(--chip-bg); color: var(--fg); padding: 4px 10px; border-radius: 3px; text-decoration: none; }
   .clips a::after { content: " \2197"; color: var(--accent); }
   .clips a:hover { background: var(--tan); color: var(--espresso); }
 
-  /* Helene messaging timeline: real sequence, so it is ordered */
-  .timeline { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; border-left: 2px solid var(--accent-soft); }
-  .timeline li { padding: 4px 0 12px 20px; position: relative; }
-  .timeline li::before { content: ""; position: absolute; left: -7px; top: 11px; width: 12px; height: 12px; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent-soft); }
-  .timeline .t { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 600; display: block; }
-  .timeline q { font-family: var(--display); font-style: italic; quotes: "\201C" "\201D"; }
+  /* ---------- Film strip ---------- */
+  .films { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+  .film { display: grid; gap: 6px; text-decoration: none; color: var(--fg); min-width: 0; }
+  .film .media { aspect-ratio: 4 / 3; }
+  .film b { font-family: var(--display); font-size: 1rem; }
+  .film span { font-size: 0.8rem; color: var(--muted); }
+  .film:hover b { color: var(--accent); }
 
-  .films { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-  .films a {
-    display: grid; gap: 2px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--rule); border-radius: 3px; text-decoration: none; color: var(--fg);
-  }
-  .films a:hover { border-color: var(--accent-soft); }
-  .films b { font-family: var(--display); font-size: 1.05rem; color: var(--accent); }
-  .films span { font-size: 0.82rem; color: var(--muted); }
+  /* ---------- Writing + press thumbnails ---------- */
+  .thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 22px; }
+  .thumb { display: grid; gap: 8px; align-content: start; text-decoration: none; color: var(--fg); min-width: 0; }
+  .thumb .media { aspect-ratio: 3 / 2; }
+  .thumb .src { font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .thumb b { font-family: var(--display); font-size: 1.05rem; line-height: 1.3; }
+  .thumb:hover b { color: var(--accent); text-decoration: underline; text-decoration-color: var(--accent-soft); }
 
-  /* ---------- Writing + press ---------- */
-  .alt { background: var(--surface); border-block: 1px solid var(--rule); }
-  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 48px; margin-top: 8px; }
-  .item { padding: 20px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 4px; }
-  .item h3 { font-size: 1.2rem; }
-  .item h3 a { color: var(--fg); text-decoration-color: var(--accent-soft); }
-  .item .src { font-size: 0.85rem; color: var(--muted); }
-  .item p { font-size: 0.95rem; }
-
-  .placements { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 40px; }
-  .placements li { padding: 16px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 3px; }
-  .placements .outlet { font-family: var(--display); font-weight: 700; font-size: 1.1rem; }
-  .placements .what { font-size: 0.92rem; }
-  .placements .how { font-size: 0.82rem; color: var(--muted); }
-  .note { font-size: 0.88rem; color: var(--muted); margin-top: 18px; max-width: 70ch; }
+  /* ---------- Placements ---------- */
+  .placements { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 32px; }
+  .placements li { padding: 14px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 2px; min-width: 0; }
+  .placements .outlet { font-family: var(--display); font-weight: 700; font-size: 1.08rem; }
+  .placements .how { font-size: 0.88rem; color: var(--muted); }
+  .note { font-size: 0.85rem; color: var(--muted); margin-top: 16px; }
 
   /* ---------- About ---------- */
-  .about { display: grid; grid-template-columns: 1fr 320px; gap: 56px; margin-top: 24px; }
+  .about { display: grid; grid-template-columns: 1fr 340px; gap: 56px; }
   .about > * { min-width: 0; }
-  .about .text { display: grid; gap: 16px; max-width: 64ch; }
-  .side h3 { font-family: var(--body); font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
-  .side ul { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 4px; font-size: 0.93rem; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 26px; }
+  .about .text { display: grid; gap: 14px; max-width: 60ch; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; align-content: start; }
   .tags span { font-size: 0.82rem; border: 1px solid var(--rule); padding: 3px 10px; border-radius: 3px; }
 
   /* ---------- Footer ---------- */
   footer { background: var(--espresso); color: var(--tan); border-top: 4px solid var(--rose); }
   footer .wrap { padding-block: 44px calc(44px + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: end; justify-content: space-between; }
   footer h2 { color: #fff; font-size: 1.8rem; }
-  footer p { margin-top: 8px; color: var(--tan); }
+  footer p { margin-top: 8px; }
   footer a { color: #fff; text-decoration-color: var(--rose); }
-  footer .contact { display: grid; gap: 6px; font-size: 1rem; }
+  footer .contact { display: grid; gap: 6px; }
   .copy { font: inherit; font-size: 0.8rem; background: transparent; color: var(--tan); border: 1px solid var(--rose); border-radius: 3px; padding: 2px 8px; margin-left: 8px; cursor: pointer; }
   .copy:focus-visible { outline: 2px solid var(--tan); outline-offset: 2px; }
 
-  @media (max-width: 820px) {
-    .intro, .about { grid-template-columns: 1fr; gap: 36px; }
-    .case { grid-template-columns: 1fr; gap: 14px; }
-    .case .meta { grid-template-columns: repeat(auto-fit, minmax(140px, auto)); gap: 2px 16px; }
-    .grid2 { grid-template-columns: 1fr; }
-    .hero .wrap { gap: 32px; padding-block: 40px 48px; }
+  @media (max-width: 960px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .films { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .placements { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
-  @media (max-width: 460px) {
-    body { font-size: 16px; }
-    .portrait, .portrait img { width: 160px; height: 160px; }
-    .portrait { margin: 0 20px 20px 0; }
-    .portrait .ring { inset: 20px -20px -20px 20px; }
-    .portrait .back { inset: 10px -10px -10px 10px; }
+  @media (max-width: 640px) {
+    .cards, .placements, .about { grid-template-columns: 1fr; }
+    .films { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .about { gap: 28px; }
+    .hero .wrap { gap: 28px; padding-block: 36px 44px; }
+    .portrait, .portrait img { width: 150px; height: 150px; }
+    .portrait { margin: 0 18px 18px 0; }
+    .portrait .ring { inset: 18px -18px -18px 18px; }
+    .portrait .back { inset: 9px -9px -9px 9px; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    a, .films a, .clips a { transition: background-color .15s, border-color .15s, text-decoration-thickness .15s; }
+    .thumb .media img, .film .media img { transition: transform .3s; }
+    .thumb:hover .media img, .film:hover .media img { transform: scale(1.03); }
   }
 </style>
 <link rel="icon" href="data:,">
@@ -213,302 +201,152 @@
       <h1>Mickey Poandl</h1>
       <div class="pronouns">he/they</div>
       <p class="tag">Telling stories that make an impact</p>
+      <p class="sub">12 years in communications for mission-driven organizations, from HIV services to arts advocacy to a city's recovery after Hurricane Helene.</p>
       <div class="links">
         <a class="btn" href="assets/Mickey_Poandl_Resume.pdf">Resume (PDF)</a>
         <a href="https://www.linkedin.com/in/mickey-poandl">LinkedIn</a>
         <a href="#contact">Contact</a>
       </div>
-      <p class="where">Asheville, NC · open to relocation</p>
     </div>
   </div>
 </header>
 
 <main>
-  <section class="wrap intro" aria-label="Introduction">
-    <div>
-      <p class="lede">I've spent 12 years telling stories for mission-driven organizations: an HIV service organization, a national arts advocacy fund and a public destination marketing organization.</p>
-      <p>For four years I was the one-person communications team at the Western North Carolina AIDS Project, where I led a full rebrand, served as chief spokesperson and made short documentaries about people living with HIV in Appalachia. For the past five years I've worked in national media relations at Explore Asheville, including co-leading the PR department through Hurricane Helene. The lesson that runs through all of it: nothing engages an audience like someone telling their own story.</p>
-    </div>
-    <ul class="facts" aria-label="At a glance">
-      <li><b>68</b><span>media requests coordinated in the five weeks after Hurricane Helene, from CNN to the BBC</span></li>
-      <li><b>30</b><span>placements from the Black Cultural Heritage Trail campaign, including Bloomberg and The Washington Post</span></li>
-      <li><b>7</b><span>short documentaries produced about people living with HIV in Western North Carolina</span></li>
-      <li><b>253</b><span>TV airings of a fall color series I scripted, on 87 stations in 34 states</span></li>
+  <div class="wrap">
+    <ul class="stats" aria-label="At a glance">
+      <li><b>68</b><span>media requests in five weeks after Hurricane Helene</span></li>
+      <li><b>30</b><span>placements for the Black Cultural Heritage Trail</span></li>
+      <li><b>7</b><span>short documentaries on HIV in Appalachia</span></li>
+      <li><b>253</b><span>TV airings of a fall color series I scripted</span></li>
     </ul>
-  </section>
+  </div>
 
   <section class="section" id="work" aria-labelledby="work-h">
     <div class="wrap">
-      <span class="eyebrow">Selected work</span>
-      <h2 id="work-h">Case studies</h2>
+      <div class="head"><h2 id="work-h">Selected work</h2><span>Case studies</span></div>
+      <div class="cards">
 
-      <!-- 1. Helene -->
-      <article class="case" id="helene">
-        <div class="meta">
-          <span class="org">Explore Asheville</span>
-          <span class="when">Sept. 2024 to Mar. 2025</span>
-          <span class="role">Co-lead, PR department</span>
-        </div>
-        <div class="body">
-          <h3>Telling the truth about a city after Hurricane Helene</h3>
-          <div>
-            <p class="label">The challenge</p>
-            <p>Helene hit Asheville on September 27, 2024, and visitation stopped overnight in a region where tourism supports one in seven jobs. Our PR director and coordinator positions were both vacant, so a fellow PR manager and I co-led the department for six months. For the first weeks I worked from Charlotte, because Asheville had no reliable power, water or internet.</p>
-          </div>
-          <div>
-            <p class="label">What I did</p>
-            <ul>
-              <li>Helped set up a shared media tracker and coordinated 68 requests in five weeks, including CNN, NBC News, TODAY, The New York Times and the BBC. Most asked for our CEO, so I scheduled and prepared her for each interview.</li>
-              <li>Became an on-camera spokesperson for the first time, in dozens of interviews with outlets including WRAL, WCNC Charlotte, Spectrum News 1 and The Charlotte Observer.</li>
-              <li>Argued inside the marketing team that we couldn't wish our way out of the storm. Most of the visitor experience was intact, but the public believed Asheville was a disaster zone, so we named that perception and corrected it with current data, talking points and photos.</li>
-            </ul>
-          </div>
-          <div>
-            <p class="label">How the message changed, week by week</p>
-            <ol class="timeline">
-              <li><span class="t">Oct. 1</span>Still standing, with a long road ahead. Focus on residents, first responders and donations.</li>
-              <li><span class="t">Week two</span>How to help from afar: online shopping with local makers, the relief fund and Concert for Carolina.</li>
-              <li><span class="t">Week of Oct. 21</span>Reopening <q>in stages and pockets,</q> naming what was open and what needed time.</li>
-              <li><span class="t">Early November</span><q>Plan your return trip with heart.</q> <q>You coming back is our comeback.</q></li>
-              <li><span class="t">Mid-November</span><q>Be Part of the Comeback,</q> built around resilience and the holiday season.</li>
-            </ol>
-          </div>
-          <div class="result">
-            <p><b>Result:</b> Months after the storm, Asheville made The New York Times' "52 Places to Go in 2025." In the quarter we led PR without a director, the team earned 265 placements. At the six-month mark I helped plan Good Morning America's live "Asheville Rising" broadcast, which drew more than 2.6 million viewers that week. GMA and its sponsors raised $2.7 million for Western North Carolina.</p>
-          </div>
-        </div>
-      </article>
+        <article class="card">
+          <div class="media"><div class="fallback"><b>68</b><span>media requests in five weeks</span></div></div>
+          <span class="meta">Explore Asheville · 2024 to 2025</span>
+          <h3>Hurricane Helene recovery</h3>
+          <p>Co-led the PR department for six months after the storm, with no director. Prepared the CEO for national interviews and became an on-camera spokesperson.</p>
+          <p class="result">Months later, Asheville made <b>The New York Times' "52 Places to Go in 2025."</b></p>
+        </article>
 
-      <!-- 2. BCHT + NYT -->
-      <article class="case" id="black-asheville">
-        <div class="meta">
-          <span class="org">Explore Asheville</span>
-          <span class="when">2024 to 2025</span>
-          <span class="role">Co-lead, media campaign</span>
-        </div>
-        <div class="body">
-          <h3>Putting Black Asheville in the national story</h3>
-          <div>
-            <p class="label">The challenge</p>
-            <p>Asheville's new Black Cultural Heritage Trail marks a mile of history through three neighborhoods, including places that urban renewal tore apart. Destination marketing usually smooths over that kind of history. The campaign needed to tell it straight and send visitors to the Black-owned businesses that carry it forward.</p>
-          </div>
-          <div>
-            <p class="label">What I did</p>
-            <ul>
-              <li>Co-led the year-long media campaign. I designed the press trip and wrote the national press release, which spoke frankly about urban renewal and racial injustice.</li>
-              <li>Built the itinerary around more than 20 BIPOC-owned businesses and hosted 12 journalists.</li>
-              <li>Created a BIPOC press sheet on The Block, Asheville's historic Black business district, its Black Wall Street history and Cherokee influence on the region.</li>
-              <li>When a New York Times writer was undecided about including Asheville in "52 Places to Go in 2025," I pitched her new Black Asheville storylines. That gave the city a story beyond hurricane recovery.</li>
-            </ul>
-          </div>
-          <div class="result">
-            <p><b>Result:</b> 30 placements, including Travel + Leisure, Bloomberg and The Washington Post, and a spot on The New York Times' "52 Places to Go in 2025."</p>
-          </div>
-          <div class="clips" aria-label="Coverage">
+        <article class="card">
+          <div class="media"><img src="https://afar.brightspotcdn.com/dims4/default/6bd8ebb/2147483647/strip/true/crop/3000x1500+0+346/resize/1440x720!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F77%2F11%2F9b847b7c44c7a7ea1e8a7a9a833a%2Fnorth-carolina-asheville-ymi-cultural-center-pr-credit-reggie-tidwell-band-credit-michelle-heimerman.jpg" alt="The YMI Cultural Center in Asheville and a performer on its stage" loading="lazy" onerror="this.remove()"><div class="fallback"><b>30</b><span>national placements</span></div></div>
+          <span class="meta">Explore Asheville · 2024</span>
+          <h3>Black Cultural Heritage Trail</h3>
+          <p>Designed the press trip and wrote the national release, which spoke frankly about urban renewal. Then pitched Black Asheville to The New York Times.</p>
+          <p class="result"><b>30 placements,</b> including Bloomberg, Travel + Leisure and The Washington Post.</p>
+          <div class="clips">
             <a href="https://www.bnnbloomberg.ca/in-asheville-a-black-heritage-trail-ushers-in-a-whole-new-economy-1.2071495">Bloomberg</a>
             <a href="https://www.travelandleisure.com/asheville-black-cultural-heritage-trail-north-carolina-8597899">Travel + Leisure</a>
-            <a href="http://www.smithsonianmag.com/history/this-little-known-civil-rights-activist-refused-to-give-up-his-bus-seat-four-years-before-rosa-parks-did-180984742/">Smithsonian Magazine</a>
-            <a href="https://www.afar.com/magazine/why-the-block-is-ashevilles-must-visit-neighborhood">AFAR</a>
+            <a href="http://www.smithsonianmag.com/history/this-little-known-civil-rights-activist-refused-to-give-up-his-bus-seat-four-years-before-rosa-parks-did-180984742/">Smithsonian</a>
           </div>
-        </div>
-      </article>
+        </article>
 
-      <!-- 3. Mini-Docs -->
-      <article class="case" id="mini-docs">
-        <div class="meta">
-          <span class="org">Western NC AIDS Project</span>
-          <span class="when">2020</span>
-          <span class="role">Producer, filmmaker and editor</span>
-        </div>
-        <div class="body">
-          <h3>The WNCAP Mini-Docs and a virtual World AIDS Day</h3>
-          <div>
-            <p class="label">The challenge</p>
-            <p>HIV stigma in rural Appalachia keeps people from getting tested and treated. In 2020, COVID also cancelled WNCAP's in-person World AIDS Day, one of its signature events.</p>
-          </div>
-          <div>
-            <p class="label">What I did</p>
-            <ul>
-              <li>Conceived, produced and marketed seven short documentaries about people living with HIV and the volunteers who serve them.</li>
-              <li>Turned World AIDS Day 2020 into a multimedia campaign across print, video and social media, filming and editing the videos myself, from the film premiere to the annual volunteer awards.</li>
-            </ul>
-          </div>
-          <div class="result">
-            <p><b>Result:</b> The profile of Miss Betty, a 90-year-old harm reduction volunteer, was picked up by our regional TV station.</p>
-          </div>
-          <div class="films" aria-label="Watch the films">
-            <a href="https://www.youtube.com/watch?v=B3HkDCifZF4"><b>The People We Serve</b><span>Feature film</span></a>
-            <a href="https://www.youtube.com/watch?v=o-6IvvNeY9U"><b>Miss Betty</b><span>Harm reduction volunteer</span></a>
-            <a href="https://www.youtube.com/watch?v=Fmuk-OkoAK0"><b>Jade</b><span>Short film</span></a>
-            <a href="https://www.youtube.com/watch?v=oqiPM2ZLxJA"><b>Maxine</b><span>Short film</span></a>
-            <a href="https://www.youtube.com/watch?v=ctKFI_aTynM"><b>Giovanni</b><span>Short film</span></a>
-            <a href="https://wncap.org/worldaidsday2020/"><b>World AIDS Day 2020</b><span>Campaign page</span></a>
-          </div>
-        </div>
-      </article>
+        <article class="card">
+          <div class="media"><img src="https://i.ytimg.com/vi/B3HkDCifZF4/hqdefault.jpg" alt="Still from The People We Serve" loading="lazy" onerror="this.remove()"><div class="fallback"><b>7</b><span>short films</span></div></div>
+          <span class="meta">WNCAP · 2020</span>
+          <h3>The WNCAP Mini-Docs</h3>
+          <p>Produced seven short documentaries about people living with HIV in Western North Carolina.</p>
+          <p class="result">The film about <b>Miss Betty,</b> a 90-year-old harm reduction volunteer, was picked up by regional TV.</p>
+          <div class="clips"><a href="#films">Watch the films</a></div>
+        </article>
 
-      <!-- 4. RISE ABOVE -->
-      <article class="case" id="rise-above">
-        <div class="meta">
-          <span class="org">Western NC AIDS Project</span>
-          <span class="when">About two years</span>
-          <span class="role">Editor-in-chief and team lead</span>
-        </div>
-        <div class="body">
-          <h3>RISE ABOVE, a newsletter by and for people living with HIV</h3>
-          <div>
-            <p class="label">The challenge</p>
-            <p>A grant from AIDS United funded a newsletter written by WNCAP clients for other clients. Several contributors had high needs, including health and transportation barriers.</p>
-          </div>
-          <div>
-            <p class="label">What I did</p>
-            <ul>
-              <li>Led a team of six current and former clients: led editorial meetings, made assignments and kept contributors on deadline.</li>
-              <li>Removed what kept people from showing up. I drove members to meetings and brought food, and one writer drove two hours from rural Clay County to take part.</li>
-              <li>Edited each issue and contributed to grant reporting.</li>
-            </ul>
-          </div>
-          <div class="result">
-            <p><b>Result:</b> At least six seasonal editions, with a print run of about 1,000, reaching roughly 200 clients through community centers, public housing and coffee shops across Western North Carolina.</p>
-          </div>
+        <article class="card">
+          <div class="media dark"><img src="https://wncap.org/wp-content/uploads/2020/11/WAD-virtual-event-horizontal-real-899x481.png" alt="Virtual World AIDS Day 2020 event graphic" loading="lazy" onerror="this.remove()"><div class="fallback"><b>2020</b><span>Virtual World AIDS Day</span></div></div>
+          <span class="meta">WNCAP · 2020</span>
+          <h3>Virtual World AIDS Day</h3>
+          <p>When COVID cancelled the in-person event, I turned it into a campaign across print, video and social media, and filmed and edited the videos.</p>
+          <div class="clips"><a href="https://wncap.org/worldaidsday2020/">Campaign page</a></div>
+        </article>
+
+        <article class="card">
+          <div class="media dark"><div class="fallback"><b>6</b><span>client writers, about 1,000 copies an issue</span></div></div>
+          <span class="meta">WNCAP · 2 years</span>
+          <h3>RISE ABOVE newsletter</h3>
+          <p>Led a team of six clients writing a newsletter by and for people living with HIV, funded by AIDS United.</p>
+          <p class="result">Reached about <b>200 clients</b> through community centers, public housing and coffee shops.</p>
+          <div class="clips"><a href="https://wncap.org/wp-content/uploads/2020/10/Client-News-Issue-3.pdf">Sample issue</a></div>
+        </article>
+
+        <article class="card">
+          <div class="media"><img src="https://static.wixstatic.com/media/a1176c_5d93c1a5c35c4c0bbe8a4ee280269a1c~mv2.jpg/v1/fill/w_1920,h_1299,al_c,q_90/a1176c_5d93c1a5c35c4c0bbe8a4ee280269a1c~mv2.jpg" alt="Asheville, photo by ExploreAsheville.com" loading="lazy" onerror="this.remove()"><div class="fallback"><b>LGBTQ+</b><span>travel outreach</span></div></div>
+          <span class="meta">Explore Asheville · 2021 to now</span>
+          <h3>LGBTQ+ travel and creators</h3>
+          <p>Built relationships with LGBTQ+ media and creators, from the IGLTA convention to ongoing city ambassador Ravi Roth.</p>
+          <p class="result">Coverage in <b>Passport Magazine, GayCities and Pride Journeys.</b></p>
           <div class="clips">
-            <a href="https://wncap.org/client-news/">RISE ABOVE page</a>
-            <a href="https://wncap.org/wp-content/uploads/2020/10/Client-News-Issue-3.pdf">Sample issue (PDF)</a>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5. LGBTQ+ and creators -->
-      <article class="case" id="lgbtq">
-        <div class="meta">
-          <span class="org">Explore Asheville</span>
-          <span class="when">2021 to present</span>
-          <span class="role">PR Manager</span>
-        </div>
-        <div class="body">
-          <h3>LGBTQ+ travel and creator partnerships</h3>
-          <div>
-            <p class="label">The challenge</p>
-            <p>Explore Asheville committed to engaging and inviting more diverse audiences. For LGBTQ+ travelers, that meant building real relationships with queer media and creators.</p>
-          </div>
-          <div>
-            <p class="label">What I did</p>
-            <ul>
-              <li>Represented Asheville at the IGLTA convention and connected with dozens of LGBTQ+ writers and creators.</li>
-              <li>Hosted LGBTQ+ creators including Ravi Roth, who became an ongoing ambassador for the city, and built itineraries around queer- and BIPOC-owned businesses.</li>
-              <li>Led creator programs beyond LGBTQ+ travel too. An Allegiant Airlines campaign produced 56 posts and 2.8 million impressions. A creator trip with Sony and Biltmore produced 128 posts and 1.3 million engagements and impressions.</li>
-            </ul>
-          </div>
-          <div class="result">
-            <p><b>Result:</b> Coverage in Passport Magazine, GayCities and Pride Journeys, including GayCities coverage of Asheville's recovery after Helene.</p>
-          </div>
-          <div class="clips">
-            <a href="https://passportmagazine.com/find-your-place-in-the-welcoming-lgbtq-community-of-asheville-north-carolina/">Passport Magazine</a>
+            <a href="https://passportmagazine.com/find-your-place-in-the-welcoming-lgbtq-community-of-asheville-north-carolina/">Passport</a>
             <a href="https://www.pridejourneys.com/post/asheville-is-open-and-welcoming-lgbtq-visitors-this-holiday-season">Pride Journeys</a>
           </div>
-        </div>
-      </article>
-    </div>
-  </section>
+        </article>
 
-  <section class="section alt" id="writing" aria-labelledby="writing-h">
-    <div class="wrap">
-      <span class="eyebrow">Writing and spokesperson work</span>
-      <h2 id="writing-h">Samples</h2>
-      <div class="grid2">
-        <div class="item">
-          <h3><a href="https://wncap.org/dofl-impact-story-healing-the-body-and-the-soul/">Healing the Body and the Soul</a></h3>
-          <span class="src">WNCAP · Honorable Mention, Dining Out For Life Impact Story</span>
-          <p>A client's path from a late-stage HIV diagnosis back to health, purpose and advocacy.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://wncap.org/annual-report-2020/">2020 Annual Report</a></h3>
-          <span class="src">WNCAP · writing, design coordination and production</span>
-          <p>One of the organization's first annual reports, produced with staff and vendors.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://wncap.org/wp-content/uploads/2021/07/Dine-IN-For-Life-2021-Press-Release-FINAL.pdf">Dine IN For Life 2021 press release</a></h3>
-          <span class="src">WNCAP · press release (PDF)</span>
-          <p>Announcing the pandemic version of the signature fundraiser, with its <a href="https://wncap.org/wp-content/uploads/2021/07/DIFL-2021-Poster.pdf">event poster</a>.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://www.mynewsletterbuilder.com/email/newsletter/1414925212">A Year of Masks, Zoom... and Giving!</a></h3>
-          <span class="src">WNCAP · year-end e-newsletter, 2020</span>
-          <p>Year-end donor email from the organization's busiest year.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://theavlview.com/wncap-30th-anniversary-special-interview">WNCAP 30th anniversary interview</a></h3>
-          <span class="src">The Asheville View · video interview, 2021</span>
-          <p>Talking PrEP, PEP and WNCAP's services as the organization's spokesperson.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://www.northcarolinahealthnews.org/2021/06/29/as-a-blood-shortage-unfolds-in-nc-many-gay-and-bisexual-men-are-still-barred-from-donating/">Gay and bisexual men still barred from donating blood</a></h3>
-          <span class="src">NC Health News · quoted as spokesperson, 2021</span>
-          <p>On the FDA's blood donation ban during a statewide shortage.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://wlos.com/news/local/aids-quilt-rock-legend-deliver-message-in-asheville">AIDS quilt, rock legend deliver message in Asheville</a></h3>
-          <span class="src">WLOS-TV · spokesperson interview, 2018</span>
-          <p>Bringing the AIDS Memorial Quilt, including Freddie Mercury's panel, to Asheville.</p>
-        </div>
-        <div class="item">
-          <h3><a href="https://theurbannews.com/your-health/2021/wncap-news-april-2021/">WNCAP News</a></h3>
-          <span class="src">The Urban News · guest health column, 2021</span>
-          <p>Part of building relationships with local Black and LGBTQ+ media through guest articles.</p>
-        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="press" aria-labelledby="press-h">
+  <section class="section alt" id="films" aria-labelledby="films-h">
     <div class="wrap">
-      <span class="eyebrow">Explore Asheville, 2021 to present</span>
-      <h2 id="press-h">National placements</h2>
-      <ul class="placements">
-        <li><span class="outlet">The New York Times</span><span class="what">"52 Places to Go in 2025"</span><span class="how">Pitched the writer on Black Asheville storylines</span></li>
-        <li><span class="outlet">CBS News</span><span class="what">Asheville tourism recovery, December 2025</span><span class="how">Hosted the reporter; aired 765 times on CBS stations nationwide</span></li>
-        <li><span class="outlet">Smithsonian Magazine</span><span class="what"><a href="http://www.smithsonianmag.com/history/this-little-known-civil-rights-activist-refused-to-give-up-his-bus-seat-four-years-before-rosa-parks-did-180984742/">The activist who kept his bus seat before Rosa Parks</a></span><span class="how">Secured the placement</span></li>
-        <li><span class="outlet">EatingWell</span><span class="what">2026 Best Wellness Town</span><span class="how">Secured the placement</span></li>
-        <li><span class="outlet">Men's Health</span><span class="what">2026 Travel Awards</span><span class="how">Recruited the writer on a New York media mission</span></li>
-        <li><span class="outlet">Fodor's Travel</span><span class="what">Asheville guide</span><span class="how">Persuaded the editor to update outdated hurricane coverage</span></li>
-        <li><span class="outlet">Travel + Leisure</span><span class="what">Blue Ridge Parkway open during the 2025 federal shutdown</span><span class="how">Led rapid-response messaging; 495.9 million combined reach</span></li>
-        <li><span class="outlet">WBTV Charlotte</span><span class="what">"Rediscover Asheville," a two-hour special</span><span class="how">Secured the special and pitched its 10-plus partners</span></li>
-        <li><span class="outlet">Town &amp; Country, Forbes</span><span class="what">Biltmore Championship, 2026</span><span class="how">Planned and hosted the press trip, and made sure the stories covered the Skyview tournament</span></li>
-      </ul>
-      <p class="note">These are placements I secured or led. Over five years, the Explore Asheville PR team I'm part of earned more than 3,800 placements and hosted 505 journalists.</p>
+      <div class="head"><h2 id="films-h">Video</h2><span>Produced, filmed and edited</span></div>
+      <div class="films">
+        <a class="film" href="https://www.youtube.com/watch?v=B3HkDCifZF4"><div class="media"><img src="https://i.ytimg.com/vi/B3HkDCifZF4/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>The People We Serve</b><span>Feature</span></a>
+        <a class="film" href="https://www.youtube.com/watch?v=o-6IvvNeY9U"><div class="media"><img src="https://i.ytimg.com/vi/o-6IvvNeY9U/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>Miss Betty</b><span>Mini-Doc</span></a>
+        <a class="film" href="https://www.youtube.com/watch?v=Fmuk-OkoAK0"><div class="media"><img src="https://i.ytimg.com/vi/Fmuk-OkoAK0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>Jade</b><span>Mini-Doc</span></a>
+        <a class="film" href="https://www.youtube.com/watch?v=oqiPM2ZLxJA"><div class="media"><img src="https://i.ytimg.com/vi/oqiPM2ZLxJA/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>Maxine</b><span>Mini-Doc</span></a>
+        <a class="film" href="https://www.youtube.com/watch?v=ctKFI_aTynM"><div class="media"><img src="https://i.ytimg.com/vi/ctKFI_aTynM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>Giovanni</b><span>Mini-Doc</span></a>
+        <a class="film" href="https://theavlview.com/wncap-30th-anniversary-special-interview"><div class="media"><img src="https://i.ytimg.com/vi/g7iQB2ME7lM/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="play">&#9654; Watch</span></div><b>On camera</b><span>Asheville View interview</span></a>
+      </div>
     </div>
   </section>
 
-  <section class="section alt" id="about" aria-labelledby="about-h">
+  <section class="section" id="writing" aria-labelledby="writing-h">
     <div class="wrap">
-      <span class="eyebrow">About</span>
-      <h2 id="about-h">Why mission work</h2>
+      <div class="head"><h2 id="writing-h">Writing and press</h2><span>WNCAP, 2017 to 2021</span></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://wncap.org/dofl-impact-story-healing-the-body-and-the-soul/"><div class="media"><img src="https://wncap.org/wp-content/uploads/2019/03/DOFL18-FORKS-UPS-899x599.jpg" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">Impact story · Honorable Mention</span><b>Healing the Body and the Soul</b></a>
+        <a class="thumb" href="https://wncap.org/annual-report-2020/"><div class="media dark"><img src="https://wncap.org/wp-content/uploads/2020/11/AR-2020-cover-image-899x792.png" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">Annual report</span><b>WNCAP 2020 Annual Report</b></a>
+        <a class="thumb" href="https://theurbannews.com/your-health/2021/wncap-news-april-2021/"><div class="media"><img src="https://theurbannews.com/wp-content/uploads/2021/04/04_UNews_April2021-wncap.jpg" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">The Urban News · guest column</span><b>WNCAP News, April 2021</b></a>
+        <a class="thumb" href="https://wncap.org/wp-content/uploads/2021/07/Dine-IN-For-Life-2021-Press-Release-FINAL.pdf"><div class="media dark"><div class="fallback"><b>DIFL</b><span>Press release, 2021</span></div></div><span class="src">Press release</span><b>Dine IN For Life 2021</b></a>
+        <a class="thumb" href="https://wlos.com/news/local/aids-quilt-rock-legend-deliver-message-in-asheville"><div class="media"><img src="https://wlos.com/resources/media/9c97a90f-f9bc-4c2d-b162-c990906f78c7-jumbo16x9_PAIDSQUILTS.transfer_frame_3309.jpg?1543290109303" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">WLOS-TV · spokesperson</span><b>AIDS quilt, rock legend deliver message in Asheville</b></a>
+        <a class="thumb" href="https://www.northcarolinahealthnews.org/2021/06/29/as-a-blood-shortage-unfolds-in-nc-many-gay-and-bisexual-men-are-still-barred-from-donating/"><div class="media"><img src="https://www.northcarolinahealthnews.org/wp-content/uploads/2021/06/IMG_5158-scaled.jpg" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">NC Health News · spokesperson</span><b>Gay and bisexual men still barred from donating blood</b></a>
+        <a class="thumb" href="https://www.mynewsletterbuilder.com/email/newsletter/1414925212"><div class="media dark"><div class="fallback"><b>Email</b><span>Year-end newsletter, 2020</span></div></div><span class="src">E-newsletter</span><b>A Year of Masks, Zoom... and Giving!</b></a>
+        <a class="thumb" href="https://www.afar.com/magazine/why-the-block-is-ashevilles-must-visit-neighborhood"><div class="media"><img src="https://afar.brightspotcdn.com/dims4/default/6bd8ebb/2147483647/strip/true/crop/3000x1500+0+346/resize/1440x720!/quality/90/?url=https%3A%2F%2Fk3-prod-afar-media.s3.us-west-2.amazonaws.com%2Fbrightspot%2F77%2F11%2F9b847b7c44c7a7ea1e8a7a9a833a%2Fnorth-carolina-asheville-ymi-cultural-center-pr-credit-reggie-tidwell-band-credit-michelle-heimerman.jpg" alt="" loading="lazy" onerror="this.remove()"></div><span class="src">AFAR · Explore Asheville</span><b>Why the Block is Asheville's must-visit neighborhood</b></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="press" aria-labelledby="press-h">
+    <div class="wrap">
+      <div class="head"><h2 id="press-h">National placements</h2><span>Explore Asheville, 2021 to now</span></div>
+      <ul class="placements">
+        <li><span class="outlet">The New York Times</span><span class="how">"52 Places to Go in 2025": pitched the writer</span></li>
+        <li><span class="outlet">CBS News</span><span class="how">Recovery story: hosted the reporter, 765 airings</span></li>
+        <li><span class="outlet">Smithsonian Magazine</span><span class="how">Black history feature: secured</span></li>
+        <li><span class="outlet">EatingWell</span><span class="how">2026 Best Wellness Town: secured</span></li>
+        <li><span class="outlet">Men's Health</span><span class="how">2026 Travel Awards: recruited the writer</span></li>
+        <li><span class="outlet">Fodor's Travel</span><span class="how">Persuaded the editor to update the Asheville guide</span></li>
+        <li><span class="outlet">Travel + Leisure</span><span class="how">Parkway open during the shutdown: led messaging</span></li>
+        <li><span class="outlet">WBTV Charlotte</span><span class="how">Two-hour "Rediscover Asheville" special: secured</span></li>
+        <li><span class="outlet">Town &amp; Country, Forbes</span><span class="how">Biltmore Championship: hosted the press trip</span></li>
+      </ul>
+      <p class="note">Placements I secured or led. The full PR team earned more than 3,800 over five years.</p>
+    </div>
+  </section>
+
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="wrap">
+      <div class="head"><h2 id="about-h">About</h2><span>Asheville, NC · open to relocation</span></div>
       <div class="about">
         <div class="text">
-          <p>I grew up in the Northern Virginia suburbs and started my career in Washington, D.C., at the Americans for the Arts Action Fund. There I helped train grassroots advocates to question presidential candidates on camera about arts funding, and got on-the-record answers from Hillary Clinton, Bernie Sanders and several Republican candidates.</p>
-          <p>At WNCAP I led delegations of clients to lobby lawmakers in Washington and Raleigh on PrEP, Ryan White funding and harm reduction. My most important job was helping them tell their own stories.</p>
-          <p>At Explore Asheville I learned to work at national scale, and Hurricane Helene taught me that I do my best work when the stakes are high and the cause is real. Now I'm returning to mission-driven work full time: lifting up marginalized communities and defending democracy at a moment that calls for it.</p>
-          <p>Before communications, I trained in theater. It still shows up in how I write, pitch and appear on camera. I've been car-free for four years and will happily talk your ear off about transit and walkable cities.</p>
+          <p>I started in Washington, D.C., at the Americans for the Arts Action Fund, then spent four years as the one-person communications team at the Western North Carolina AIDS Project. For the past five years I've worked in national media relations at Explore Asheville.</p>
+          <p>Now I'm returning to mission-driven work full time. The lesson that runs through all of it: nothing engages an audience like someone telling their own story.</p>
         </div>
-        <div class="side">
-          <h3>Strengths</h3>
-          <div class="tags">
-            <span>Communications strategy</span><span>Storytelling</span><span>Media relations</span><span>Crisis communications</span><span>Spokesperson</span><span>Speechwriting</span><span>Video</span><span>Digital and email</span><span>Advocacy campaigns</span><span>Workflow design</span>
-          </div>
-          <h3>Education</h3>
-          <ul>
-            <li>B.A., Theatre, American University, cum laude</li>
-            <li>Graduate coursework, Public Administration, Western Carolina University</li>
-            <li>Media Relations Certificate, PRSA</li>
-            <li>Member, PRSA and IGLTA</li>
-          </ul>
-          <h3>Community</h3>
-          <ul>
-            <li>Co-host, Sweet Tea, a weekly LGBTQ+ radio show on Asheville FM</li>
-            <li>Volunteer, Blue Ridge Pride</li>
-            <li>Co-writer, New Queers Eve, The Magnetic Theatre</li>
-            <li>One of 13 global winners, Visit Finland's "Masterclass of Happiness" creator competition</li>
-          </ul>
+        <div class="tags" aria-label="Strengths">
+          <span>Communications strategy</span><span>Storytelling</span><span>Media relations</span><span>Crisis communications</span><span>Spokesperson</span><span>Speechwriting</span><span>Video</span><span>Digital and email</span><span>Advocacy campaigns</span><span>B.A., American University</span><span>PRSA Media Relations Certificate</span>
         </div>
       </div>
     </div>
